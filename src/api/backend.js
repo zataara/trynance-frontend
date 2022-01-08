@@ -33,4 +33,4 @@ class BackendApi {
   }
 }
 
-module.exports = BackendApi;
+export default BackendApi;
