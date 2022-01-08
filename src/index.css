@@ -1,3 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  h1 {
+    color: salmon;
+    @apply tracking-tight;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply 
+    hover:bg-gray-0500
+  }
+}
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
