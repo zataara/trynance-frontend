@@ -4,12 +4,14 @@ import { useRoutes, Navigate } from 'react-router-dom';
 import TradeLayout from './layouts/TradeLayout';
 import UnAuthLayout from './layouts/UnAuthLayout';
 
+/***** Auth *****/
+import Login from './auth/Login';
+import Register from './auth/Register';
+
 /***** Pages *****/
 import Trade from './pages/Trade';
 import User from './pages/User';
 import Trades from './pages/Trades';
-import Login from './pages/Login';
-import Register from './pages/Register';
 import NotFound from './pages/NotFound';
 
 
