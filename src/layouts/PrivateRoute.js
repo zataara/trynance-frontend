@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import UserContext from "../auth/UserContext";
+import TradeLayout from "./TradeLayout";
 
 /** "Higher-Order Component" for private routes.
  *
@@ -12,7 +13,7 @@ import UserContext from "../auth/UserContext";
 function PrivateRoute({ children }) {
   const { currentUser } = useContext(UserContext);
 
-  return currentUser ? children : <Navigate to="/login" />
+  return currentUser ? <TradeLayout> {children} </TradeLayout> : <Navigate to="/login" />
 }
 
 export default PrivateRoute;
