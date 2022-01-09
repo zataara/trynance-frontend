@@ -6,9 +6,9 @@ const AuthNavBar = (props) => {
   const [navOpen, setNavOpen] = useState(false);
   return (
     <>
-      <nav className="top-0 absolute z-50 w-full felx flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
+      <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div ClassName="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
               className="text-black text-sm font-bold leading-relaxed inine-block mr-4 py-2 whitespace-nowrap uppercase"
               to="/"
@@ -33,7 +33,7 @@ const AuthNavBar = (props) => {
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
               <li className="flex items-center"></li>
             </ul>
-            <ul classname="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
                 <Link to='/register'>
                 <button
