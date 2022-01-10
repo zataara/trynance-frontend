@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       colors: {
         "darkmode-tbody": "#1E2838",
-        "darkmode-thead": "#10192B",
+      "darkmode-thead": "#10192B",
       }
     },
   },
