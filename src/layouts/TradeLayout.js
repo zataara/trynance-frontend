@@ -1,14 +1,12 @@
-import { Outlet } from "react-router-dom";
+import TradeNavBar from "../components/nav/TradeNavBar";
+import TradeSideBar from "../components/nav/TradeSideBar";
 
-import TradeNavBar from "../components/TradeNavBar";
-import TradeSideBar from "../components/TradeSideBar";
-
-const TradeLayout = () => {
+const TradeLayout = ({ children }) => {
   return (
     <>
       <TradeNavBar />
       <TradeSideBar />
-      <Outlet />
+      {children}
     </>
   );
 };
