@@ -1,4 +1,4 @@
-import AuthNavBar from "../components/AuthNavBar";
+import AuthNavBar from "../components/nav/AuthNavBar";
 
 const UnAuthLayout = ({ children }) => {
   return (
