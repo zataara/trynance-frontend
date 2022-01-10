@@ -1,4 +1,4 @@
-import { Routes, Route, useRoutes, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 /*****  Layouts  *****/
 import PrivateRoute from "./layouts/PrivateRoute";
