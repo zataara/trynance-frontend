@@ -13,7 +13,7 @@ import TradeLayout from "./TradeLayout";
 function PrivateRoute({ children }) {
   const { currentUser } = useContext(UserContext);
 
-  return currentUser ? <TradeLayout> {children} </TradeLayout> : <Navigate to="/login" />
+  return currentUser ? <TradeLayout>  {children} </TradeLayout> : <Navigate to="/login" />
 }
 
 export default PrivateRoute;
