@@ -1,87 +1,71 @@
-import React, { useState, useEffect } from "react";
-import convertBigNums from "../basics/convertBigNums";
+import { React, useContext } from "react";
+import convertBigNums from "../helpers/convertBigNums";
+import CoinContext from "../context/CoinContext";
 
-const Cryptos = () => {
-  const [coins, setCoins] = useState([]);
-  const [seconds, setSeconds] = useState(0)
-
-  // initial fetch and fetch every 2 seconds
-  useEffect(() => {
-    fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false"
-    )
-      .then((data) => data.json())
-      .then((data) => setCoins(data))
-  }, [seconds]);
-
-  // fetch new data from CoinGecko every 10 sends 
-  useEffect(() => {
-    setInterval(() => {
-      setSeconds(seconds => seconds + 2)
-    }, 2000)
-  }, [])
+const Cryptos = (props) => {
+  const { coins } = useContext(CoinContext);
 
   return (
-    <div class="flex flex-col">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-          <div class="overflow-hidden shadow-md sm:rounded-lg">
-            <table class="min-w-full">
-              <thead class="bg-darkmode-thead">
+    <div className="flex flex-col md:mx-20 h-screen overscroll-none mr-5">
+      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 overscroll-none">
+        <div className="inline-block pt-14 py-2 min-w-full sm:px-6 lg:px-8 overscroll-none">
+          <div className="overflow-auto shadow-md sm:rounded-lg overscroll-none">
+            <table className="overscroll-none">
+              <thead className="sticky top-0 bg-darkmode-thead">
                 <tr>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     #
                   </th>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Last Price
                   </th>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 "
                   >
                     24H
                   </th>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Buy/Sell
                   </th>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Market Cap
                   </th>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
                   >
                     24h Volume
                   </th>
                   <th
                     scope="col"
-                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
                   >
                     Supply
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="flex-1 overflow-y-auto ">
                 {coins.map((coin) => (
-                  <tr class="bg-darkmode-tbody border-b  dark:border-gray-600">
+                  <tr class="bg-darkmode-tbody border-b  dark:border-gray-600 transition duration-1000">
                     <td>
                       <img
                         className="w-12 pl-3"
@@ -89,32 +73,37 @@ const Cryptos = () => {
                         src={coin.image}
                       ></img>
                     </td>
-                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                    <td className="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
                       {coin.name}
                     </td>
-                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      ${coin.current_price}
+                    <td className="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
+                      $
+                      {coin.current_price > 9999
+                        ? coin.current_price
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                        : coin.current_price}
                     </td>
                     <td
                       class={
-                        "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"
+                        "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000"
                       }
                     >
                       {console.log()}
                       <button
                         className={
                           coin.price_change_percentage_24h > 5
-                            ? "bg-green-600/100 text-white font-bold py-2 px-4 rounded"
+                            ? "bg-green-600/100 text-white font-bold py-2 px-4 rounded transition duration-1000"
                             : coin.price_change_percentage_24h > 3
-                            ? "bg-green-600/75 text-white font-bold py-2 px-4 rounded"
+                            ? "bg-green-600/75 text-white font-bold py-2 px-4 rounded transition duration-1000"
                             : coin.price_change_percentage_24h > 0
-                            ? "bg-green-600/50 text-white font-bold py-2 px-4 rounded"
+                            ? "bg-green-600/50 text-white font-bold py-2 px-4 rounded transition duration-1000"
                             : coin.price_change_percentage_24h > -3
-                            ? "bg-red-600/50 text-white font-bold py-2 px-4 rounded"
+                            ? "bg-red-600/50 text-white font-bold py-2 px-4 rounded transition duration-1000"
                             : coin.price_change_percentage_24h > -5
-                            ? "bg-red-600/75 text-white font-bold py-2 px-4 rounded"
+                            ? "bg-red-600/75 text-white font-bold py-2 px-4 rounded transition duration-1000"
                             : coin.price_change_percentage_24h < -5
-                            ? "bg-red-600/100 text-white font-bold py-2 px-4 rounded"
+                            ? "bg-red-600/100 text-white font-bold py-2 px-4 rounded transition duration-1000"
                             : ""
                         }
                       >
@@ -122,20 +111,23 @@ const Cryptos = () => {
                       </button>
                     </td>
                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      <button class="bg-cyan-300 hover:bg-blue-700  hover:text-white text-black font-bold py-2 px-4 rounded">
+                      <button
+                        class="transition duration-300 ease-in-out 
+                        hover:bg-black hover:text-cyan-300 transform 
+                        hover:-translate-xy-1  hover:scale-110 
+                        rounded-lg p-4 border hover:border-cyan-300 bg-cyan-300 text-darkmode-tbody font-bold py-2 px-4  rounded"
+                      >
                         Trade
                       </button>
                     </td>
-                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                    <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
                       ${convertBigNums(coin.market_cap)}
                     </td>
-                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      $
-                      {convertBigNums(coin.total_volume)}
+                    <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
+                      ${convertBigNums(coin.total_volume)}
                     </td>
-                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      {convertBigNums(coin.circulating_supply
-                        )}
+                    <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
+                      {convertBigNums(coin.circulating_supply)}
                     </td>
                   </tr>
                 ))}
