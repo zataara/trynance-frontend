@@ -1,9 +1,9 @@
 import { React, useState, useEffect } from "react";
 import Router from "./routes";
 import useLocalStorage from "./hooks/useLocalStorage";
-import UserContext from "./auth/UserContext";
+import UserContext from "./context/UserContext";
 import backendApi from "./api/backend";
-import Loading from "./basics/Loading";
+import Loading from "./components/Loading";
 import jwt_decode from "jwt-decode";
 export const TOKEN_ID = "trynance-token";
 
