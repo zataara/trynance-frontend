@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import UserContext from "../auth/UserContext";
+import UserContext from "../context/UserContext";
 import TradeLayout from "./TradeLayout";
 
 /** "Higher-Order Component" for private routes.
