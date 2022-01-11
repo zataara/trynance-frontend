@@ -11,8 +11,11 @@ import Register from "./auth/Register";
 import Dashboard from "./pages/Dashboard";
 import Assets from "./pages/Assets";
 import Trades from "./pages/Trades";
+import Coins from "./pages/Coins"
 import Gainers from "./pages/Gainers";
 import Losers from "./pages/Losers";
+import Watchlist from "./pages/Watchlist";
+import News from "./pages/News";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
@@ -60,6 +63,15 @@ const Router = ({ login, register, logout }) => {
         />
         <Route
           exact
+          path="/coins"
+          element={
+            <PrivateRoute exact path="/coins">
+              <Coins />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
           path="/gainers"
           element={
             <PrivateRoute exact path="/gainers">
@@ -73,6 +85,24 @@ const Router = ({ login, register, logout }) => {
           element={
             <PrivateRoute exact path="/losers">
               <Losers />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/watchlist"
+          element={
+            <PrivateRoute exact path="/watchlist">
+              <Watchlist />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/news"
+          element={
+            <PrivateRoute exact path="/news">
+              <News />
             </PrivateRoute>
           }
         />
