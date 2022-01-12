@@ -37,6 +37,31 @@ class BackendApi {
     let res = await this.request(`users/${username}`);
     return res.user;
   }
+
+  static async getAssets(username) {
+    let res = await this.request(`users/${username}/assets`);
+    return res;
+  }
+
+  static async getTrades(username) {
+    let res = await this.request(`users/${username}/trades`);
+    return res;
+  }
+
+  static async postTrade(username, cfa, cf, cta, ct, dt) {
+    let res = await this.request(`users/${username}/${cfa}/${cf}/${cta}/${ct}/${dt}`, {}, 'post');
+    return res;
+  }
+
+  static async getFaves(username) {
+    let res = await this.request(`users/${username}/faves`);
+    return res;
+  }
+
+  static async postFave(username, fave) {
+    let res = await this.request(`users/${username}/${fave}`, {}, 'post');
+    return res;
+  }
 }
 
 export default BackendApi;
