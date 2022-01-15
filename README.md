@@ -132,7 +132,7 @@ npm start
 
 ### <a name='Testing'></a>Testing
 
-To run test in either repository, in the root directory run:
+To run tests in either repository, in the root directory run:
 `
-
+npm test
 `
