@@ -1,10 +1,13 @@
 # Trynance
 
 [![wakatime](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/9c23e643-6e01-4686-9b63-111f09932020.svg)](https://wakatime.com/badge/user/99e71179-209a-409a-b8bc-6612891d9ce9/project/9c23e643-6e01-4686-9b63-111f09932020) <img src="https://img.shields.io/github/languages/code-size/zataara/trynance-frontend"> ![GitHub last commit](https://img.shields.io/github/last-commit/zataara/trynance-frontend) 
-<br>
+
+
 Tryance is crytpocurrency exchange where users can find digital assets, exchange fiat and crypto currencies, add coins to a watchlist, and read financial news. All users begin with $1000 USD. Trynance's goal is to educate users about digital currencies and give them an environment to learn and trade them without risking financial loss.
-<br>
+
+
 <img src='./src/images/trynance.png'>
+
 
 ## Table of Contents
 1. [Deployment](#Deployment)
