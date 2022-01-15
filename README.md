@@ -24,7 +24,7 @@ Tryance is crytpocurrency exchange where users can find digital assets, exchange
 7. [Local Deployment](#LocalDeployment)
 8. [Testing](#Testing)
 
-### <a name='Deployemnt'></a>Deployment
+## <a name='Deployemnt'></a>Deployment
 No deployment yet. Still putting the finishing touces on v.1.0
 
 ### <a name='TechnologiesUsed'></a>Technologies Used
@@ -38,29 +38,29 @@ No deployment yet. Still putting the finishing touces on v.1.0
 
 <a name='Graphics'></a><b>Graphics:</b> Adobe Photoshop
 
-### <a name='Backend'></a> Backend
+## <a name='Backend'></a> Backend
 <a href='https://github.com/zataara/trynance-backend'>Backend Repository</a>
 
 
-### <a name='VideoDemo'></a>Video Demo
+## <a name='VideoDemo'></a>Video Demo
 Will be available upon deployment.
 
 
-### <a name='DemoAccountForSiteUse'></a>Demo Acount for Site Use
+## <a name='DemoAccountForSiteUse'></a>Demo Acount for Site Use
 
 Trynance uses User Registration and Login to save a users data. If you do not wish to create your own account you may use the test account below:
 
 <b>Username:</b> test
 <b>Password:</b> test
 
-### <a name='Features'></a>Features
+## <a name='Features'></a>Features
 - User Registration and Login
 - Real-Time, Live-Refreshing of Coin Data
 - Save favorite coins to a watchlist
 - Use fiat to trade any coin
 - Browse crypto news
 
-### <a name='LocalDeployment'></a>Local Deployment
+## <a name='LocalDeployment'></a>Local Deployment
 ##### Backend and DB:
 Download and install the latest version of postgres <a href='https://www.postgresql.org/download/'>here</a>.
 
@@ -130,7 +130,7 @@ npm start
 `
 
 
-### <a name='Testing'></a>Testing
+## <a name='Testing'></a>Testing
 
 To run tests in either repository, in the root directory run:
 `
