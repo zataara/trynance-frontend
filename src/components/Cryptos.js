@@ -1,9 +1,31 @@
-import { React, useContext } from "react";
+import { React, useState, useContext } from "react";
+import UserContext from "../context/UserContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 import convertBigNums from "../helpers/convertBigNums";
 import CoinContext from "../context/CoinContext";
+import starIcon from "../images/star.svg";
+import starIcon_gray from "../images/star_gray.svg";
+import backendApi from "../api/backend";
 
 const Cryptos = (props) => {
-  const { coins } = useContext(CoinContext);
+  const { coins, setCoins } = useContext(CoinContext);
+  const {
+    currentUser,
+    faves,
+    setFaves,
+    fetchFaves,
+    trades,
+    setTrades,
+    fetchTrades,
+    assets,
+    setAssets,
+    fetchAssets,
+    toggleFave
+  } = useContext(UserContext);
+
+  
+
+
 
   return (
     <div className="flex flex-col md:mx-20 h-screen overscroll-none mr-5">
@@ -13,6 +35,12 @@ const Cryptos = (props) => {
             <table className="overscroll-none">
               <thead className="sticky top-0 bg-darkmode-thead">
                 <tr>
+                  <th
+                    scope="col"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                  >
+                    <i></i>
+                  </th>
                   <th
                     scope="col"
                     className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
@@ -65,7 +93,19 @@ const Cryptos = (props) => {
               </thead>
               <tbody className="flex-1 overflow-y-auto ">
                 {coins.map((coin) => (
-                  <tr class="bg-darkmode-tbody border-b  dark:border-gray-600 transition duration-1000">
+                  <tr className="bg-darkmode-tbody border-b  dark:border-gray-600 transition duration-1000">
+                    <td className="sticky top-0 py-3 px-2 text-center text-gray-700 uppercase dark:text-gray-400">
+                      <img
+                        id={coin.symbol}
+                        onClick={toggleFave}
+                        src={
+                          faves.some(fave => fave === coin.symbol)
+                            ? starIcon
+                            : starIcon_gray
+                        }
+                        alt="favorite"
+                      />
+                    </td>
                     <td>
                       <img
                         className="w-12 pl-3"
