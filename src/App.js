@@ -11,7 +11,7 @@ function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_ID);
-
+  
   console.debug(
     "App",
     "isLoading=",
