@@ -186,6 +186,38 @@ const TradeSideBar = () => {
                   </Link>
                 </div>
               </li>
+              {/*** WathclistLink ***/}
+
+              <li className="items-center">
+                <div
+                  className={
+                    window.location.href.indexOf("/watchlist") !== -1
+                      ? "bg-cyan-300 rounded-lg border-black border"
+                      : ""
+                  }
+                >
+                  <Link
+                    className={
+                      "text-s uppercase py-3 font-bold block " +
+                      (window.location.href.indexOf("/watchlist") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                    to="/watchlist"
+                  >
+                    <i
+                      className={
+                        "uil uil-favorite mr-2 text-2xl " +
+                        (window.location.href.indexOf("/watchlist") !== -1
+                          ? "opacity-75 ml-7"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    Watchlist
+                  </Link>
+                </div>
+              </li>
+              
               {/***** Gainers *****/}
               <li className="items-center">
                 <div
@@ -246,37 +278,7 @@ const TradeSideBar = () => {
                   </Link>
                 </div>
               </li>
-              {/*** WathclistLink ***/}
-
-              <li className="items-center">
-                <div
-                  className={
-                    window.location.href.indexOf("/watchlist") !== -1
-                      ? "bg-cyan-300 rounded-lg border-black border"
-                      : ""
-                  }
-                >
-                  <Link
-                    className={
-                      "text-s uppercase py-3 font-bold block " +
-                      (window.location.href.indexOf("/watchlist") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                    to="/watchlist"
-                  >
-                    <i
-                      className={
-                        "uil uil-favorite mr-2 text-2xl " +
-                        (window.location.href.indexOf("/watchlist") !== -1
-                          ? "opacity-75 ml-7"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    Watchlist
-                  </Link>
-                </div>
-              </li>
+              
 
               {/*** Link ***/}
               <li className="items-center">
