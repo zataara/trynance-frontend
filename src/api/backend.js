@@ -59,9 +59,17 @@ class BackendApi {
   }
 
   static async postFave(username, fave) {
-    let res = await this.request(`users/${username}/${fave}`, {}, 'post');
+    let res = await this.request(`users/${username}/faves/${fave}`, {}, 'post');
     return res;
   }
+
+  static async deleteFave(username, fave) {
+    let res = await this.request(`users/${username}/faves/${fave}`, {}, 'delete');
+    return res;
+  }
+
+  
+
 }
 
 export default BackendApi;
