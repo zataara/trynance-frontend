@@ -129,7 +129,6 @@ const Cryptos = (props) => {
                         "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000"
                       }
                     >
-                      {console.log()}
                       <button
                         className={
                           coin.price_change_percentage_24h > 5
