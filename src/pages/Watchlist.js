@@ -24,9 +24,23 @@ const Watchlist = (props) => {
     faveCoins
   } = useContext(UserContext);
 
-  
+  // make a copy of state to be able to display based on fave or not
+  let favesToConvert = [].concat(faves);
+  function convertFaveCoins(favesToConvert) {
+    let favorites = [];
+    for (let coin of coins) {
+      for (let fave of favesToConvert) {
+        if (coin.symbol === fave) {
+          favorites.push(coin);
+        }
+      }
+    }
+    return favorites;
+  }
+  let allFaveCoins = convertFaveCoins(favesToConvert);
 
-
+  //order the watchlist based on marketcap
+  const orderedFaves = allFaveCoins.sort((a, b) => b.id - a.id);
 
   return (
     <div className="flex flex-col md:mx-20 h-screen overscroll-none mr-5">
@@ -93,7 +107,7 @@ const Watchlist = (props) => {
                 </tr>
               </thead>
               <tbody className="flex-1 overflow-y-auto ">
-                {faveCoins.map((coin) => (
+                {orderedFaves.map((coin) => (
                   <tr className="bg-darkmode-tbody border-b  dark:border-gray-600 transition duration-1000">
                     <td className="sticky top-0 py-3 px-2 text-center text-gray-700 uppercase dark:text-gray-400">
                       <img
