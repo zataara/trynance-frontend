@@ -1,11 +1,8 @@
-import { React, useState, useContext } from "react";
+import { React, useContext } from "react";
 import UserContext from "../context/UserContext";
-import useLocalStorage from "../hooks/useLocalStorage";
-import convertBigNums from "../helpers/convertBigNums";
 import CoinContext from "../context/CoinContext";
 import starIcon from "../images/star.svg";
 import starIcon_gray from "../images/star_gray.svg";
-import backendApi from "../api/backend";
 
 const Assets = (props) => {
   const { coins } = useContext(CoinContext);

@@ -1,27 +1,16 @@
-import { React, useState, useContext } from "react";
+import { React, useContext } from "react";
 import UserContext from "../context/UserContext";
-import useLocalStorage from "../hooks/useLocalStorage";
 import convertBigNums from "../helpers/convertBigNums";
 import CoinContext from "../context/CoinContext";
 import starIcon from "../images/star.svg";
 import starIcon_gray from "../images/star_gray.svg";
-import backendApi from "../api/backend";
+
 
 const Watchlist = (props) => {
-  const { coins, setCoins } = useContext(CoinContext);
+  const { coins} = useContext(CoinContext);
   const {
-    currentUser,
     faves,
-    setFaves,
-    fetchFaves,
-    trades,
-    setTrades,
-    fetchTrades,
-    assets,
-    setAssets,
-    fetchAssets,
     toggleFave,
-    faveCoins
   } = useContext(UserContext);
 
   // make a copy of state to be able to display based on fave or not
