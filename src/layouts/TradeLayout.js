@@ -11,13 +11,9 @@ import backendApi from "../api/backend.js";
 const TradeLayout = ({ children }) => {
   const { currentUser } = useContext(UserContext);
   const [coins, setCoins] = useState([]);
-  const [faves, setFaves] = useState(["btc"]);
+  const [faves, setFaves] = useState([]);
   const [trades, setTrades] = useState([]);
   const [assets, setAssets] = useState([]);
-  const [assetCoins, setAssetCoins] = useState([]);
-  const [faveCoins, setFaveCoins] = useState([]);
-  const [gainerCoins, setGainerCoins] = useState([]);
-  const [loserCoins, setLoserCoins] = useState([]);
   const [news, setNews] = useState([]);
 
   // fetch new data from CoinGecko every 2 seconds and set state
@@ -36,7 +32,7 @@ const TradeLayout = ({ children }) => {
     
   }, []);
 
-  // fetch faves from the db, set fave coins for rendering
+  // fetch user info from the db, set each state 
   const fetchFaves = async () => {
     let res = await backendApi.getFaves(currentUser);
     let faves = [];
@@ -44,23 +40,19 @@ const TradeLayout = ({ children }) => {
       faves.push(obj.symbol);
     }
     setFaves(faves);
-    setFaveCoins(convertFaveCoins(faves));
   };
 
   const fetchTrades = async () => {
-    let { data, status } = await backendApi.getTrades(currentUser);
-    if (status === 200) {
-      setTrades(data);
-      console.log(data);
-    }
+    let res = await backendApi.getTrades(currentUser);
+    let newTrades = JSON.parse(res);
+    setTrades(newTrades);
   };
 
   const fetchAssets = async () => {
     let res = await backendApi.getAssets(currentUser);
-    let newAssets = JSON.parse(res)
+    let newAssets = JSON.parse(res);
+    console.log(newAssets)
     setAssets(newAssets);
-    setAssetCoins(convertAssetCoins(newAssets));
-  
   };
 
   useEffect(() => {
@@ -70,18 +62,20 @@ const TradeLayout = ({ children }) => {
   }, [currentUser]);
 
   // fetch new data from CryptoPanic API every 30 seconds and set state
-  // useEffect(() => {
-  //   let intervalId = setInterval(() => {
-  //     fetch("https://messari.io/api/vi/news")
-  //       .then((data) => data.json())
-  //       .then((data) => setNews(data))
-  //       .catch(function (error) {
-  //         console.log(error);
-  //       });
-  //   }, 60000);
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      fetch("https://messari.io/api/vi/news")
+        .then((data) => data.json())
+        .then((data) => setNews(data))
+        .catch(function (error) {
+          console.log(error);
+        });
+    }, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
 
+
+  //handles clicking the favorite icon and posts fave to db
   async function toggleFave(event) {
     const clicked = event.target.id;
     if (faves.some((star) => star === clicked)) {
@@ -93,37 +87,6 @@ const TradeLayout = ({ children }) => {
       fetchFaves();
       return setFaves([...faves, clicked]);
     }
-  }
-
-  function convertFaveCoins(faves) {
-    let favorites = [];
-    for (let coin of coins) {
-      for (let fave of faves) {
-        if (coin.symbol === fave) {
-          favorites.push(coin);
-        }
-      }
-    }
-    return favorites;
-  }
-
-  function convertAssetCoins(assets) {
-    let assetCoins= [];
-    for (let asset of assets) {
-      for (let coin of coins) {
-        if (coin.symbol === asset.symbol) {
-          assetCoins.push({
-            name: coin.name,
-            symbol: coin.symbol,
-            image: coin.image,
-            amount: asset.amount,
-            value: coin.current_price * asset.amount,
-            price_change_percentage_24h: coin.price_change_percentage_24h,
-          });
-        }
-      }
-    }
-    return assetCoins;
   }
 
   return (
@@ -141,12 +104,8 @@ const TradeLayout = ({ children }) => {
           fetchTrades,
           assets,
           setAssets,
-          assetCoins,
           fetchAssets,
           toggleFave,
-          faveCoins,
-          gainerCoins,
-          loserCoins,
           news,
         }}
       >
