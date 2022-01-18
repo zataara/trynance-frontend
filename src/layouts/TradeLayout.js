@@ -14,23 +14,11 @@ const TradeLayout = ({ children }) => {
   const [faves, setFaves] = useState(["btc"]);
   const [trades, setTrades] = useState([]);
   const [assets, setAssets] = useState([]);
+  const [assetCoins, setAssetCoins] = useState([]);
   const [faveCoins, setFaveCoins] = useState([]);
   const [gainerCoins, setGainerCoins] = useState([]);
   const [loserCoins, setLoserCoins] = useState([]);
-
-  function preSetGainerCoins(c) {
-    let gainers = c.sort(
-      (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
-    );
-    setGainerCoins(gainers);
-  }
-
-  function preSetLoserCoins(c) {
-    let losers = c.sort(
-      (a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h
-    );
-    setLoserCoins(losers);
-  }
+  const [news, setNews] = useState([]);
 
   // fetch new data from CoinGecko every 2 seconds and set state
   useEffect(() => {
@@ -39,9 +27,13 @@ const TradeLayout = ({ children }) => {
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false"
       )
         .then((data) => data.json())
-        .then((data) => setCoins(data));
+        .then((data) => setCoins(data))
+        .catch(function (error) {
+          console.log(error);
+        });
     }, 2000);
     return () => clearInterval(intervalId);
+    
   }, []);
 
   // fetch faves from the db, set fave coins for rendering
@@ -64,11 +56,11 @@ const TradeLayout = ({ children }) => {
   };
 
   const fetchAssets = async () => {
-    let { data, status } = await backendApi.getAssets(currentUser);
-    if (status === 200) {
-      setAssets(data);
-      console.log(data);
-    }
+    let res = await backendApi.getAssets(currentUser);
+    let newAssets = JSON.parse(res)
+    setAssets(newAssets);
+    setAssetCoins(convertAssetCoins(newAssets));
+  
   };
 
   useEffect(() => {
@@ -76,6 +68,19 @@ const TradeLayout = ({ children }) => {
     fetchTrades().catch(console.error);
     fetchAssets().catch(console.error);
   }, [currentUser]);
+
+  // fetch new data from CryptoPanic API every 30 seconds and set state
+  // useEffect(() => {
+  //   let intervalId = setInterval(() => {
+  //     fetch("https://messari.io/api/vi/news")
+  //       .then((data) => data.json())
+  //       .then((data) => setNews(data))
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   }, 60000);
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
   async function toggleFave(event) {
     const clicked = event.target.id;
@@ -102,6 +107,25 @@ const TradeLayout = ({ children }) => {
     return favorites;
   }
 
+  function convertAssetCoins(assets) {
+    let assetCoins= [];
+    for (let asset of assets) {
+      for (let coin of coins) {
+        if (coin.symbol === asset.symbol) {
+          assetCoins.push({
+            name: coin.name,
+            symbol: coin.symbol,
+            image: coin.image,
+            amount: asset.amount,
+            value: coin.current_price * asset.amount,
+            price_change_percentage_24h: coin.price_change_percentage_24h,
+          });
+        }
+      }
+    }
+    return assetCoins;
+  }
+
   return (
     <>
       <TradeNavBar />
@@ -117,11 +141,13 @@ const TradeLayout = ({ children }) => {
           fetchTrades,
           assets,
           setAssets,
+          assetCoins,
           fetchAssets,
           toggleFave,
           faveCoins,
           gainerCoins,
           loserCoins,
+          news,
         }}
       >
         <CoinContext.Provider
