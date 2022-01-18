@@ -8,23 +8,18 @@ import starIcon_gray from "../images/star_gray.svg";
 import backendApi from "../api/backend";
 
 const Assets = (props) => {
-  const { coins, setCoins } = useContext(CoinContext);
-  const {
-    currentUser,
-    faves,
-    setFaves,
-    fetchFaves,
-    trades,
-    setTrades,
-    fetchTrades,
-    assets,
-    setAssets,
-    assetCoins,
-    fetchAssets,
-    toggleFave,
-  } = useContext(UserContext);
+  const { coins } = useContext(CoinContext);
+  const { faves, assets, toggleFave } = useContext(UserContext);
 
-  const orderedAssets = [].concat(assetCoins).sort((a, b) => b.value - a.value);
+  const orderedAssets = [].concat(assets).sort((a, b) => b.value - a.value);
+
+  function findCoinValue(coin) {
+    for (let c in coins) {
+      if (c.symbol === coin.symbol) {
+        return c.last_price * coin.amount;
+      }
+    }
+  }
 
   return (
     <div className="flex flex-col md:mx-20 h-screen overscroll-none mr-5">
@@ -116,16 +111,14 @@ const Assets = (props) => {
                       }
                     >
                       ${" "}
-                      {coin.value % 2 === 0
-                        ? coin.value.toFixed(0)
-                        : coin.value.toFixed(2)}
+                      {findCoinValue(coin)}
                     </td>
                     <td
                       class={
                         "py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000"
                       }
                     >
-                      <button
+                      {/* <button
                         className={
                           coin.price_change_percentage_24h > 5
                             ? "bg-green-600/100 text-white font-bold py-2 px-4 rounded transition duration-1000"
@@ -143,7 +136,7 @@ const Assets = (props) => {
                         }
                       >
                         {coin.price_change_percentage_24h.toFixed(2)} %
-                      </button>
+                      </button> */}
                     </td>
                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                       <button
