@@ -17,6 +17,7 @@ import Losers from "./pages/Losers";
 import Watchlist from "./pages/Watchlist";
 import News from "./pages/News";
 import Profile from "./pages/Profile";
+import MakeTrade from "./pages/MakeTrade";
 import NotFound from "./pages/NotFound";
 
 const Router = ({ login, register, logout }) => {
@@ -112,6 +113,15 @@ const Router = ({ login, register, logout }) => {
           element={
             <PrivateRoute exact path="/profile">
               <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/trade/:coin"
+          element={
+            <PrivateRoute exact path="/trade/:coin">
+              <MakeTrade />
             </PrivateRoute>
           }
         />
