@@ -8,14 +8,13 @@ import TradeSideBar from "../components/nav/TradeSideBar";
 
 import backendApi from "../api/backend.js";
 
-const TradeLayout = ({ children }) => {
+const TradeLayout = ({ children, logout }) => {
   const { currentUser } = useContext(UserContext);
   const [coins, setCoins] = useState([]);
   const [faves, setFaves] = useState([]);
   const [trades, setTrades] = useState([]);
   const [assets, setAssets] = useState([]);
-  const [news, setNews] = useState([]);
-  const [showTradeComp, setShowTradeComp] = useState([])
+  // const [news, setNews] = useState([]);
 
   // fetch new data from CoinGecko every 2 seconds and set state
   useEffect(() => {
@@ -30,10 +29,9 @@ const TradeLayout = ({ children }) => {
         });
     }, 2000);
     return () => clearInterval(intervalId);
-    
   }, []);
 
-  // fetch user info from the db, set each state 
+  // fetch user info from the db, set each state
   const fetchFaves = async () => {
     let res = await backendApi.getFaves(currentUser);
     let faves = [];
@@ -51,8 +49,8 @@ const TradeLayout = ({ children }) => {
 
   const fetchAssets = async () => {
     let res = await backendApi.getAssets(currentUser);
+    console.log("fetched");
     let newAssets = JSON.parse(res);
-    console.log(newAssets)
     setAssets(newAssets);
   };
 
@@ -75,7 +73,6 @@ const TradeLayout = ({ children }) => {
   //   return () => clearInterval(intervalId);
   // }, []);
 
-
   //handles clicking the favorite icon and posts fave to db
   async function toggleFave(event) {
     const clicked = event.target.id;
@@ -93,7 +90,7 @@ const TradeLayout = ({ children }) => {
   return (
     <>
       <TradeNavBar />
-      <TradeSideBar />
+      <TradeSideBar logout={logout} />
       <UserContext.Provider
         value={{
           currentUser,
@@ -107,7 +104,6 @@ const TradeLayout = ({ children }) => {
           setAssets,
           fetchAssets,
           toggleFave,
-          news,
         }}
       >
         <CoinContext.Provider
@@ -122,12 +118,13 @@ const TradeLayout = ({ children }) => {
               position: "absolute",
               top: 0,
               left: 0,
-              width: "86%",
+              width: "100%",
               height: "100%",
               backgroundImage: `url(${backGround})`,
               backgroundPosition: "top left",
               backgroundRepeat: "no-repeat",
               backgroundAttachement: "fixed",
+              overscrollBehaviorX: "contain",
             }}
           >
             {children}
