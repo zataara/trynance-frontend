@@ -18,9 +18,7 @@ const MakeTrade = (props) => {
 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-  
-    BackendApi.postTrade(prepareDataForTrade());
+    BackendApi.postTrade(currentUser, prepareDataForTrade());
 
   };
 
@@ -44,10 +42,12 @@ const MakeTrade = (props) => {
     let newDate = new Date(Date.now());
     const data = {
       username: currentUser,
-      currency_from_amount: currencyFromAmount,
+      currency_from_amount: parseFloat(currencyFromAmount),
+      currency_from_price: parseFloat(currencyFromRate),
       currency_from_image: findCoinImage(currencyFrom),
       currency_from: currencyFrom,
-      currency_to_amount: currencyToAmount,
+      currency_to_amount: parseFloat(currencyToAmount),
+      currency_to_price: parseFloat(currencyToRate),
       currency_to_image: findCoinImage(currencyTo),
       currency_to:  currencyTo,
       date: newDate.toDateString()
@@ -56,12 +56,14 @@ const MakeTrade = (props) => {
     return data;
   }
 
+  /***** Handlers for changes to the form *****/
   const handleFromChange = (e) => {
     const { value } = e.target;
     setCurrencyFromAmount(value);
     const rate = findCoinRate(currencyFrom);
     setCurrencyFromRate(rate);
     setCurrencyToAmount(value * rate / currencyToRate);
+   
   };
 
   const handleToChange = (e) => {
