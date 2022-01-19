@@ -1,4 +1,5 @@
 import { React, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 import convertBigNums from "../helpers/convertBigNums";
@@ -23,15 +24,18 @@ const Gainers = (props) => {
     toggleFave,
   } = useContext(UserContext);
 
-  const losers = [].concat(coins).sort((a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h);
-  
+  const losers = []
+    .concat(coins)
+    .sort(
+      (a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h
+    );
 
   return (
-    <div className="flex flex-col md:mx-20 h-screen overscroll-none mr-5">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 overscroll-none">
-        <div className="inline-block pt-14 py-2 min-w-full sm:px-6 lg:px-8 overscroll-none">
-          <div className="overflow-auto shadow-md sm:rounded-lg overscroll-none">
-            <table className="overscroll-none">
+    <div className="flex flex-col md:mx-20 h-screen overscroll-none w-11/12">
+      <div className="overflow-x-auto sm:-mx-4 sm:-mr-20 md:-mx-24  overscroll-none ">
+        <div className="inline-block pt-14 py-2 max-w-full sm:px-6 lg:px-8 ">
+          <div className="overflow-auto shadow-md sm:rounded-lg ">
+            <table className="">
               <thead className="sticky top-0 bg-darkmode-thead">
                 <tr>
                   <th
@@ -150,14 +154,16 @@ const Gainers = (props) => {
                       </button>
                     </td>
                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      <button
-                        class="transition duration-300 ease-in-out 
+                      <Link to={`/trade/${coin.name}`}>
+                        <button
+                          class="transition duration-300 ease-in-out 
                         hover:bg-black hover:text-cyan-300 transform 
                         hover:-translate-xy-1  hover:scale-110 
                         rounded-lg p-4 border hover:border-cyan-300 bg-cyan-300 text-darkmode-tbody font-bold py-2 px-4  rounded"
-                      >
-                        Trade
-                      </button>
+                        >
+                          Trade
+                        </button>
+                      </Link>
                     </td>
                     <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
                       ${convertBigNums(coin.market_cap)}
@@ -180,5 +186,3 @@ const Gainers = (props) => {
 };
 
 export default Gainers;
-
-
