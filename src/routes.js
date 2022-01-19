@@ -2,16 +2,18 @@ import { Routes, Route } from "react-router-dom";
 
 /*****  Layouts  *****/
 import PrivateRoute from "./layouts/PrivateRoute";
+import PublicRoute from "./auth/PublicRoute";
 
 /***** Auth *****/
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import Home from "./auth/Home";
 
 /***** Pages *****/
 import Dashboard from "./pages/Dashboard";
 import Assets from "./pages/Assets";
 import Trades from "./pages/Trades";
-import Coins from "./pages/Coins"
+import Coins from "./pages/Coins";
 import Gainers from "./pages/Gainers";
 import Losers from "./pages/Losers";
 import Watchlist from "./pages/Watchlist";
@@ -29,17 +31,36 @@ const Router = ({ login, register, logout }) => {
   return (
     <>
       <Routes>
-        <Route exact path="/login" element={<Login login={login} />} />
+      <Route 
+          exact 
+          path="/" 
+          element={
+            <PublicRoute>
+              <Home />
+            </PublicRoute>
+          } />
+        <Route 
+          exact 
+          path="/login" 
+          element={
+            <PublicRoute>
+              <Login login={login} />
+            </PublicRoute>
+          } />
         <Route
           exact
           path="/register"
-          element={<Register register={register} />}
+          element={
+            <PublicRoute>
+              <Register register={register} />
+            </PublicRoute>
+          }
         />
         <Route
           exact
           path="/app"
           element={
-            <PrivateRoute exact path="/app">
+            <PrivateRoute exact path="/app" logout={logout}>
               <Dashboard />
             </PrivateRoute>
           }
@@ -48,7 +69,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/assets"
           element={
-            <PrivateRoute exact path="/assets">
+            <PrivateRoute exact path="/assets" logout={logout}>
               <Assets />
             </PrivateRoute>
           }
@@ -57,7 +78,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/trades"
           element={
-            <PrivateRoute exact path="/trades">
+            <PrivateRoute exact path="/trades" logout={logout}>
               <Trades />
             </PrivateRoute>
           }
@@ -66,7 +87,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/coins"
           element={
-            <PrivateRoute exact path="/coins">
+            <PrivateRoute exact path="/coins" logout={logout}>
               <Coins />
             </PrivateRoute>
           }
@@ -75,7 +96,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/gainers"
           element={
-            <PrivateRoute exact path="/gainers">
+            <PrivateRoute exact path="/gainers" logout={logout}>
               <Gainers />
             </PrivateRoute>
           }
@@ -84,7 +105,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/losers"
           element={
-            <PrivateRoute exact path="/losers">
+            <PrivateRoute exact path="/losers" logout={logout}>
               <Losers />
             </PrivateRoute>
           }
@@ -93,7 +114,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/watchlist"
           element={
-            <PrivateRoute exact path="/watchlist">
+            <PrivateRoute exact path="/watchlist" logout={logout}>
               <Watchlist />
             </PrivateRoute>
           }
@@ -102,7 +123,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/news"
           element={
-            <PrivateRoute exact path="/news">
+            <PrivateRoute exact path="/news" logout={logout}>
               <News />
             </PrivateRoute>
           }
@@ -111,7 +132,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/profile"
           element={
-            <PrivateRoute exact path="/profile">
+            <PrivateRoute exact path="/profile" logout={logout}>
               <Profile />
             </PrivateRoute>
           }
@@ -120,7 +141,7 @@ const Router = ({ login, register, logout }) => {
           exact
           path="/trade/:coin"
           element={
-            <PrivateRoute exact path="/trade/:coin">
+            <PrivateRoute exact path="/trade/:coin" logout={logout}>
               <MakeTrade />
             </PrivateRoute>
           }
@@ -128,7 +149,7 @@ const Router = ({ login, register, logout }) => {
         <Route
           path="/404"
           element={
-            <PrivateRoute exact path="/404">
+            <PrivateRoute exact path="/404" logout={logout}>
               <NotFound />
             </PrivateRoute>
           }
