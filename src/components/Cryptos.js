@@ -28,11 +28,11 @@ const Cryptos = (props) => {
 
 
   return (
-    <div className="flex flex-col md:mx-20 h-screen overscroll-none mr-5">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 overscroll-none">
-        <div className="inline-block pt-14 py-2 min-w-full sm:px-6 lg:px-8 overscroll-none">
-          <div className="overflow-auto shadow-md sm:rounded-lg overscroll-none">
-            <table className="overscroll-none">
+    <div className="flex flex-col md:mx-20 h-screen overscroll-none w-11/12">
+      <div className="overflow-x-auto sm:-mx-4 sm:-mr-20 md:-mx-24  overscroll-none ">
+        <div className="inline-block pt-14 py-2 max-w-full sm:px-6 lg:px-8 ">
+          <div className="overflow-auto shadow-md sm:rounded-lg ">
+            <table className="">
               <thead className="sticky top-0 bg-darkmode-thead">
                 <tr>
                   <th
@@ -94,7 +94,7 @@ const Cryptos = (props) => {
               <tbody className="flex-1 overflow-y-auto ">
                 {coins.map((coin) => (
                   <tr className="bg-darkmode-tbody border-b  dark:border-gray-600 transition duration-1000">
-                    <td className="sticky top-0 py-3 px-2 text-center text-gray-700 uppercase dark:text-gray-400">
+                    <td className="cursor-pointer sticky top-0 py-3 px-2 text-center text-gray-700 uppercase dark:text-gray-400">
                       <img
                         id={coin.symbol}
                         onClick={toggleFave}
@@ -164,7 +164,7 @@ const Cryptos = (props) => {
                     <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
                       ${convertBigNums(coin.market_cap)}
                     </td>
-                    <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
+                    <td class=" py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
                       ${convertBigNums(coin.total_volume)}
                     </td>
                     <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
