@@ -6,11 +6,11 @@ const AuthNavBar = (props) => {
   const [navOpen, setNavOpen] = useState(false);
   return (
     <>
-      <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
+      <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-2 navbar-expand-lg bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              className="text-black text-sm font-bold leading-relaxed inine-block mr-4 py-2 whitespace-nowrap uppercase"
+              className="text-black text-2xl font-bold leading-relaxed inine-block mr-4 py-2 whitespace-nowrap uppercase"
               to="/"
             >
               Trynance
@@ -37,7 +37,7 @@ const AuthNavBar = (props) => {
               <li className="flex items-center">
                 <Link to='/register'>
                 <button
-                  className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  className="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:text-black active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
                   Register
@@ -49,7 +49,7 @@ const AuthNavBar = (props) => {
               <li className="flex items-center">
                 <Link to='/login'>
                 <button
-                  className="bg-white text-blueGray-700 active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                  className="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white hover:text-black active:bg-blueGray-50 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                   type="button"
                 >
                   Login
