@@ -21,10 +21,8 @@ class BackendApi {
     }
   }
 
-
-  
   static async login(data) {
-    let res = await this.request(`auth/token`, data, 'post');
+    let res = await this.request(`auth/token`, data, "post");
     return res.token;
   }
 
@@ -48,8 +46,8 @@ class BackendApi {
     return res;
   }
 
-  static async postTrade(username, cfa, cf, cta, ct, dt) {
-    let res = await this.request(`users/${username}/${cfa}/${cf}/${cta}/${ct}/${dt}`, {}, 'post');
+  static async postTrade(username, data) {
+    let res = await this.request(`users/${username}/trades`, { data }, "post");
     return res;
   }
 
@@ -59,17 +57,18 @@ class BackendApi {
   }
 
   static async postFave(username, fave) {
-    let res = await this.request(`users/${username}/faves/${fave}`, {}, 'post');
+    let res = await this.request(`users/${username}/faves/${fave}`, {}, "post");
     return res;
   }
 
   static async deleteFave(username, fave) {
-    let res = await this.request(`users/${username}/faves/${fave}`, {}, 'delete');
+    let res = await this.request(
+      `users/${username}/faves/${fave}`,
+      {},
+      "delete"
+    );
     return res;
   }
-
-  
-
 }
 
 export default BackendApi;
