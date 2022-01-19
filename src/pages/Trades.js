@@ -7,14 +7,14 @@ const Trades = (props) => {
     trades,
   } = useContext(UserContext);
 
-  const orderedTrades = [].concat(trades).sort((a, b) => b.date - a.date);
+  const orderedTrades = [].concat(trades).sort((a, b) => a.date - b.date);
 
   return (
-    <div className="flex flex-col md:mx-20 h-screen overscroll-none mr-5">
-      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8 overscroll-none">
-        <div className="inline-block pt-14 py-2 min-w-full sm:px-6 lg:px-8 overscroll-none">
+    <div className="flex flex-col md:mx-20 h-screen overscroll-none w-11/12">
+      <div className="overflow-x-auto sm:-mx-4 sm:-mr-20 md:-mx-24 overscroll-none ">
+        <div className="inline-block pt-14 p3 max-w-full sm:px-6 lg:px-8">
           <div className="overflow-auto shadow-md sm:rounded-lg overscroll-none">
-            <table className="overscroll-none">
+            <table className=" overscroll-none">
               <thead className="sticky top-0 bg-darkmode-thead">
                 <tr>
                   <th
