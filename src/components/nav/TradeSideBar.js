@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { FaChartLine } from "react-icons/fa";
 
-const TradeSideBar = () => {
+const TradeSideBar = ({logout}) => {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
@@ -12,10 +12,10 @@ const TradeSideBar = () => {
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
-            className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+            className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-3xl leading-none bg-transparent rounded border border-solid border-transparent"
             type="button"
             onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
-          ></button>
+          ><i className="uil uil-bars"></i></button>
           {/* Brand */}
           <Link
             className="md:block text-left text-black md:pb-2 ml-8 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
@@ -24,7 +24,7 @@ const TradeSideBar = () => {
             Trynance
           </Link>
           {/* User */}
-          <ul className="md:hidden items-center flex flex-wrap list-none">
+          <ul className=" items-center flex flex-wrap list-none">
             <li className="inline-block relative"></li>
             <li className="inline-block relative"></li>
           </ul>
@@ -38,11 +38,10 @@ const TradeSideBar = () => {
             {/* Collapse header */}
             <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
               <div className="flex flex-wrap">
+              
                 <div className="w-6/12">
-                  <Link
-                    className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                    to="/"
-                  ></Link>
+                  
+                
                 </div>
                 <div className="w-6/12 flex justify-end">
                   <button
@@ -50,7 +49,8 @@ const TradeSideBar = () => {
                     className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
                     onClick={() => setCollapseShow("hidden")}
                   >
-                    <i className="fas fa-times"></i>
+                    <i class="uil uil-multiply"></i>
+                    
                   </button>
                 </div>
               </div>
@@ -346,7 +346,8 @@ const TradeSideBar = () => {
               <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-s uppercase py-3 font-bold block"
-                  to="/logout"
+                  onClick={logout}
+                  to="/"
                 >
                   <i className="uil uil-signout text-blueGray-300 mr-2 text-2xl"></i>
                   Logout
