@@ -12,7 +12,7 @@ const Assets = (props) => {
 
   function findCoinValue(coin) {
     for (let c in coins) {
-      if (c.symbol === coin.symbol) {
+      if (c.name === coin.symbol) {
         return c.last_price * coin.amount;
       }
     }
