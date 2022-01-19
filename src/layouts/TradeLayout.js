@@ -15,6 +15,7 @@ const TradeLayout = ({ children }) => {
   const [trades, setTrades] = useState([]);
   const [assets, setAssets] = useState([]);
   const [news, setNews] = useState([]);
+  const [showTradeComp, setShowTradeComp] = useState([])
 
   // fetch new data from CoinGecko every 2 seconds and set state
   useEffect(() => {
@@ -62,17 +63,17 @@ const TradeLayout = ({ children }) => {
   }, [currentUser]);
 
   // fetch new data from CryptoPanic API every 30 seconds and set state
-  useEffect(() => {
-    let intervalId = setInterval(() => {
-      fetch("https://messari.io/api/vi/news")
-        .then((data) => data.json())
-        .then((data) => setNews(data))
-        .catch(function (error) {
-          console.log(error);
-        });
-    }, 60000);
-    return () => clearInterval(intervalId);
-  }, []);
+  // useEffect(() => {
+  //   let intervalId = setInterval(() => {
+  //     fetch("https://messari.io/api/vi/news")
+  //       .then((data) => data.json())
+  //       .then((data) => setNews(data))
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   }, 60000);
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
 
   //handles clicking the favorite icon and posts fave to db
