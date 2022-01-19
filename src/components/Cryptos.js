@@ -1,6 +1,6 @@
 import { React, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import useLocalStorage from "../hooks/useLocalStorage";
 import convertBigNums from "../helpers/convertBigNums";
 import CoinContext from "../context/CoinContext";
 import starIcon from "../images/star.svg";
@@ -150,6 +150,7 @@ const Cryptos = (props) => {
                       </button>
                     </td>
                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                      <Link to= {`/trade/${coin.name}`} >
                       <button
                         class="transition duration-300 ease-in-out 
                         hover:bg-black hover:text-cyan-300 transform 
@@ -158,6 +159,7 @@ const Cryptos = (props) => {
                       >
                         Trade
                       </button>
+                      </Link>
                     </td>
                     <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
                       ${convertBigNums(coin.market_cap)}
