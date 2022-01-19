@@ -1,14 +1,17 @@
-import { React, useState, useEffect, useContext } from "react";
+import { React, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import BackendApi from "../api/backend";
 import UserContext from "../context/UserContext";
 import CoinContext from "../context/CoinContext";
 import Select from "react-select";
+import { useForm } from "react-hook-form";
+
 
 const MakeTrade = (props) => {
   
   const { coins } = useContext(CoinContext);
-  const { currentUser, assets } = useContext(UserContext);
+  const { currentUser, assets, fetchAssets, fetchTrades } = useContext(UserContext);
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [currencyFrom, setCurrencyFrom] = useState();
   const [currencyTo, setCurrencyTo] = useState();
   const [currencyFromAmount, setCurrencyFromAmount] = useState(0);
@@ -17,10 +20,17 @@ const MakeTrade = (props) => {
   const [currencyToRate, setCurrencyToRate] = useState();
 
 
-  const handleSubmit = (e) => {
-    BackendApi.postTrade(currentUser, prepareDataForTrade());
+  // const handleSubmit = (e) => {
+  //   BackendApi.postTrade(currentUser, prepareDataForTrade());
 
-  };
+  // };
+
+  const onSubmit = (data) => {
+    BackendApi.postTrade(currentUser, prepareDataForTrade());
+    fetchAssets();
+    fetchTrades();
+
+  }
 
   function findCoinImage(coin) {
     for(let c of coins) {
@@ -37,6 +47,16 @@ const MakeTrade = (props) => {
       }
     }
   }
+
+  function findAssetAmount(coin) {
+    for(let asset of assets) {
+      if(asset.name === coin) {
+        return asset.amount;
+      }
+      
+    }
+  }
+
 
   function prepareDataForTrade(){
     let newDate = new Date(Date.now());
@@ -60,25 +80,21 @@ const MakeTrade = (props) => {
   const handleFromChange = (e) => {
     const { value } = e.target;
     setCurrencyFromAmount(value);
-    const rate = findCoinRate(currencyFrom);
-    setCurrencyFromRate(rate);
-    setCurrencyToAmount(value * rate / currencyToRate);
-   
+    
+    console.log(value, currencyFromRate, currencyToRate)
+
+    setCurrencyToAmount((value * currencyFromRate / currencyToRate ? value * currencyFromRate / currencyToRate : 0).toFixed(8));
   };
 
-  const handleToChange = (e) => {
-    const { value } = e.target;
-    setCurrencyToAmount(value);
-    const rate = findCoinRate(currencyTo);
-    setCurrencyToRate(rate);
-    setCurrencyFromAmount(value * rate / currencyFromRate)
-  };
+ 
 
   const changeCurrencyTo = (e) => {
     const { value } = e;
     setCurrencyTo(value);
     setCurrencyFromAmount(0);
     setCurrencyToAmount(0);
+    const toRate = findCoinRate(value);
+    setCurrencyToRate(toRate);  
   }
 
   const changeCurrencyFrom = (e) => {
@@ -86,6 +102,8 @@ const MakeTrade = (props) => {
     setCurrencyFrom(value);
     setCurrencyFromAmount(0);
     setCurrencyToAmount(0);
+    const fromRate = findCoinRate(value);
+    setCurrencyFromRate(fromRate);
   }
 
 
@@ -116,9 +134,9 @@ const MakeTrade = (props) => {
 
   return (
     <>
-      <div className="container mx-auto px-4 h-full">
-        <div className="flex content-center items-center justify-center h-full ">
-          <div className="w-full lg:w-8/12 px-4">
+      <div className="container mx-auto px-4 h-full overscroll-none ">
+        <div className="flex content-center items-center justify-center h-full overscroll-none w-9/12">
+          <div className="w-full px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0 bg-gradient-to-r from-cyan-500 to-blue-500">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
@@ -129,7 +147,7 @@ const MakeTrade = (props) => {
               </div>
 
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="relative w-full mb-3"></div>
                   <div className="text-center mt-6">
                     <div className="wrapper relative w-full mb-3">
@@ -155,12 +173,24 @@ const MakeTrade = (props) => {
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="username"
                         >
-                          Amount
+                          { errors.currency_from_amount ? 
+                          errors.currency_from_amount?.type === 'max' && <p className="text-xs text-red-700">Amount exceeds balance</p> : 'Amount'}
                         </label>
-                        <input className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        <input
+                          
+
+
+
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              {...register("currency_from_amount",
+                                                {
+                                                  max: findAssetAmount(currencyFrom)
+                                                })}
                               onChange={handleFromChange}
+                              type='number'
                               name='currency_from_amount'
                               value={currencyFromAmount}></input>
+                              
                         {/* <button 
                       className="display: inline-block">
                       Max
@@ -193,8 +223,12 @@ const MakeTrade = (props) => {
                           Amount
                         </label>
                         <input className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        onChange={handleToChange}
+                        {...register("currency_to_amount", {
+                          max: findAssetAmount(currencyFrom)
+                        })}
+                        
                         name='currency_to_amount'
+                        
                         value={currencyToAmount}></input>
                       </div>
                     </div>
@@ -205,7 +239,7 @@ const MakeTrade = (props) => {
                       Execute
                     </button>
 
-                    <Link to="/dashboard">
+                    <Link to="/app">
                       <button className="mt-1 bg-transparent text-white font-semibold hover:text-black py-2 px-4 hover:shadow-xl border border-gray-300 hover:border-black uppercase rounded w-6/12">
                         Cancel
                       </button>
