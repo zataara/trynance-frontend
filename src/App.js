@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import Router from "./routes";
+import { Helmet } from "react-helmet";
 import useLocalStorage from "./hooks/useLocalStorage";
 import UserContext from "./context/UserContext";
 import backendApi from "./api/backend";
@@ -11,7 +12,7 @@ function App() {
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_ID);
-  
+
   console.debug(
     "App",
     "isLoading=",
@@ -31,7 +32,7 @@ function App() {
           try {
             console.log(token);
             let { username } = jwt_decode(token);
-            
+
             backendApi.token = token;
             // let currentUser = await backendApi.getCurrentUser(username);
 
@@ -54,11 +55,11 @@ function App() {
   );
 
   async function register(data) {
-    console.log(data)
+    console.log(data);
     try {
       let token = await backendApi.register(data);
       setToken(token);
-      console.log(token)
+      console.log(token);
       return { success: true };
     } catch (e) {
       console.error("Signup failed", e);
@@ -86,8 +87,11 @@ function App() {
 
   return (
     <>
+      <Helmet>
+        <title>Trynance</title>
+      </Helmet>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <Router login={login} register={register} logout={logout} /> 
+        <Router login={login} register={register} logout={logout} />
       </UserContext.Provider>
     </>
   );

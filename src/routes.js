@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 /*****  Layouts  *****/
 import PrivateRoute from "./layouts/PrivateRoute";
@@ -31,27 +32,35 @@ const Router = ({ login, register, logout }) => {
   return (
     <>
       <Routes>
-      <Route 
-          exact 
-          path="/" 
+        <Route
+          exact
+          path="/"
           element={
             <PublicRoute>
               <Home />
             </PublicRoute>
-          } />
-        <Route 
-          exact 
-          path="/login" 
+          }
+        />
+        <Route
+          exact
+          path="/login"
           element={
             <PublicRoute>
+              <Helmet>
+                <title>Trynance - Login</title>
+              </Helmet>
               <Login login={login} />
             </PublicRoute>
-          } />
+          }
+        />
         <Route
           exact
           path="/register"
           element={
             <PublicRoute>
+              <Helmet>
+                <title>Trynance - Register</title>
+              </Helmet>
               <Register register={register} />
             </PublicRoute>
           }
@@ -61,6 +70,9 @@ const Router = ({ login, register, logout }) => {
           path="/app"
           element={
             <PrivateRoute exact path="/app" logout={logout}>
+              <Helmet>
+                <title>Trynance - Dashboard</title>
+              </Helmet>
               <Dashboard />
             </PrivateRoute>
           }
@@ -70,6 +82,9 @@ const Router = ({ login, register, logout }) => {
           path="/assets"
           element={
             <PrivateRoute exact path="/assets" logout={logout}>
+              <Helmet>
+                <title>Trynance - My Assets</title>
+              </Helmet>
               <Assets />
             </PrivateRoute>
           }
@@ -79,6 +94,9 @@ const Router = ({ login, register, logout }) => {
           path="/trades"
           element={
             <PrivateRoute exact path="/trades" logout={logout}>
+              <Helmet>
+                <title>Trynance - My Trades</title>
+              </Helmet>
               <Trades />
             </PrivateRoute>
           }
@@ -88,6 +106,9 @@ const Router = ({ login, register, logout }) => {
           path="/coins"
           element={
             <PrivateRoute exact path="/coins" logout={logout}>
+              <Helmet>
+                <title>Trynance - Coins</title>
+              </Helmet>
               <Coins />
             </PrivateRoute>
           }
@@ -97,6 +118,9 @@ const Router = ({ login, register, logout }) => {
           path="/gainers"
           element={
             <PrivateRoute exact path="/gainers" logout={logout}>
+              <Helmet>
+                <title>Trynance - Gainers</title>
+              </Helmet>
               <Gainers />
             </PrivateRoute>
           }
@@ -106,6 +130,9 @@ const Router = ({ login, register, logout }) => {
           path="/losers"
           element={
             <PrivateRoute exact path="/losers" logout={logout}>
+              <Helmet>
+                <title>Trynance - Losers</title>
+              </Helmet>
               <Losers />
             </PrivateRoute>
           }
@@ -115,6 +142,9 @@ const Router = ({ login, register, logout }) => {
           path="/watchlist"
           element={
             <PrivateRoute exact path="/watchlist" logout={logout}>
+              <Helmet>
+                <title>Trynance - My Watchlist</title>
+              </Helmet>
               <Watchlist />
             </PrivateRoute>
           }
@@ -124,6 +154,9 @@ const Router = ({ login, register, logout }) => {
           path="/news"
           element={
             <PrivateRoute exact path="/news" logout={logout}>
+              <Helmet>
+                <title>Trynance - News</title>
+              </Helmet>
               <News />
             </PrivateRoute>
           }
@@ -133,6 +166,9 @@ const Router = ({ login, register, logout }) => {
           path="/profile"
           element={
             <PrivateRoute exact path="/profile" logout={logout}>
+              <Helmet>
+                <title>Trynance - My Profile</title>
+              </Helmet>
               <Profile />
             </PrivateRoute>
           }
@@ -142,6 +178,9 @@ const Router = ({ login, register, logout }) => {
           path="/trade/:coin"
           element={
             <PrivateRoute exact path="/trade/:coin" logout={logout}>
+              <Helmet>
+                <title>Trynance - Trade</title>
+              </Helmet>
               <MakeTrade />
             </PrivateRoute>
           }
@@ -149,7 +188,10 @@ const Router = ({ login, register, logout }) => {
         <Route
           path="/404"
           element={
-            <PrivateRoute exact path="/404" logout={logout}>
+            <PrivateRoute path="/404" logout={logout}>
+              <Helmet>
+                <title>Trynance - 404 Not Found</title>
+              </Helmet>
               <NotFound />
             </PrivateRoute>
           }
