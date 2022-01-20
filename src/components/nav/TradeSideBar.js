@@ -8,7 +8,7 @@ const TradeSideBar = ({logout}) => {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
-      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+      <nav className="bg-gradient-to-r rounded-md from-cyan-500 to-blue-500 md:bg-white md:from-white md:to-white md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6 ">
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
@@ -18,7 +18,7 @@ const TradeSideBar = ({logout}) => {
           ><i className="uil uil-bars"></i></button>
           {/* Brand */}
           <Link
-            className="md:block text-left text-black md:pb-2 ml-8 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
+            className="md:block mr-16 text-left text-black md:pb-2 ml-8 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
             to="/app"
           >
             Trynance

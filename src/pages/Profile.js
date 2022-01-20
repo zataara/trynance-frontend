@@ -1,11 +1,15 @@
-const Dashboard = () => {
+import React from "react";
+import ComingSoon from "../components/ComingSoon";
+
+
+const Profile = () => {
 
   return (
     <>
-      <h1>Hellow</h1>
+      <ComingSoon />
       
     </>
   )
 }
 
-export default Dashboard;
+export default Profile;

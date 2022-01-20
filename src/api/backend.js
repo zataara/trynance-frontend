@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "https://trynance-backend.herokuapp.com";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3003";
 
 class BackendApi {
   static token;
