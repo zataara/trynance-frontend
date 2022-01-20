@@ -25,7 +25,7 @@ Tryance is crytpocurrency exchange where users can find digital assets, exchange
 8. [Testing](#Testing)
 
 ## <a name='Deployemnt'></a>Deployment
-No deployment yet. Still putting the finishing touces on v.1.0
+https://trynance.herokuapp.com
 
 ### <a name='TechnologiesUsed'></a>Technologies Used
 <a name='FrontEnd'></a><b>Front-End:</b> React, Tailwind
