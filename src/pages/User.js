@@ -1,6 +1,4 @@
 
-
-
 const User = () => {
   return (
     <div className='container'>

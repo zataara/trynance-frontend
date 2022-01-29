@@ -34,9 +34,9 @@ function App() {
             let { username } = jwt_decode(token);
 
             backendApi.token = token;
-            // let currentUser = await backendApi.getCurrentUser(username);
+            let currentUser = await backendApi.getCurrentUser(username);
 
-            setCurrentUser(username);
+            setCurrentUser(currentUser);
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);
             setCurrentUser(null);

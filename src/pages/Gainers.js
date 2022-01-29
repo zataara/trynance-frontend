@@ -1,31 +1,24 @@
-import { React, useState, useContext } from "react";
+import { React, useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import useLocalStorage from "../hooks/useLocalStorage";
 import convertBigNums from "../helpers/convertBigNums";
 import CoinContext from "../context/CoinContext";
 import starIcon from "../images/star.svg";
 import starIcon_gray from "../images/star_gray.svg";
-import backendApi from "../api/backend";
+
 
 const Gainers = (props) => {
-  const { coins, setCoins } = useContext(CoinContext);
+  const { coins } = useContext(CoinContext);
   const {
-    currentUser,
     faves,
-    setFaves,
-    fetchFaves,
-    trades,
-    setTrades,
-    fetchTrades,
-    assets,
-    setAssets,
-    fetchAssets,
     toggleFave,
   } = useContext(UserContext);
 
-  const gainers = [].concat(coins).sort((a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h);
-  
+  const gainers = []
+    .concat(coins)
+    .sort(
+      (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
+    );
 
   return (
     <div className="flex flex-col md:mx-20 my-10 md:my-10 h-screen overscroll-none w-12/12">
@@ -151,15 +144,15 @@ const Gainers = (props) => {
                       </button>
                     </td>
                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      <Link to= {`/trade/${coin.name}`} >
-                      <button
-                        class="transition duration-300 ease-in-out 
+                      <Link to={`/trade/${coin.name}`}>
+                        <button
+                          class="transition duration-300 ease-in-out 
                         hover:bg-black hover:text-cyan-300 transform 
                         hover:-translate-xy-1  hover:scale-110 
                         rounded-lg p-4 border hover:border-cyan-300 bg-cyan-300 text-darkmode-tbody font-bold py-2 px-4  rounded"
-                      >
-                        Trade
-                      </button>
+                        >
+                          Trade
+                        </button>
                       </Link>
                     </td>
                     <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
@@ -183,5 +176,3 @@ const Gainers = (props) => {
 };
 
 export default Gainers;
-
-
