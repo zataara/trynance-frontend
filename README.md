@@ -66,87 +66,84 @@ Download and install the latest version of postgres <a href='https://www.postgre
 
 Create both a production and testing database:
 
-`
+```sh
 createdb trynance
-`
-
-`
 createdb trynance-test
-`
+```
 
 Clone the backend repo:
 
-`
+```sh
 git clone https://github.com/zataara/trynance-backend.git
-`
+```
 
 
 Change to root directory:
 
-`
+```sh
 cd trynance-backend
-`
+```
 
 Install packages:
 
-`
+```sh
 npm install
-`
+```
 
 Change to sql directory:
 
-`
+```sh
 cd sql
-`
+```
 
 Open postrgres, set db schema and seed both dbs:
 
-`
+```sh
 psql \i trynance.sql
-`
+```
 
 Move back a directory:
 
-`
+```sh
 cd ..
-`
+```
 
 Start backend server:
 
-`
+```sh
 npm start
-`
+```
 
 ##### Frontend:
 Clone the frontend repo:
 
-`
+```sh
 git clone https://github.com/zataara/trynance-frontend.git
-`
+```
 
 Change to root directory:
 
-`
+```sh
 cd trynance-frontend
-`
+```
 
 Install packages:
 
-`
+```sh
 npm install
-`
+```
 
 Start frontend server:
 
-`
+```sh
 npm start
-`
+```
 
 
 ## <a name='Testing'></a>Testing
 
 To run tests in either repository, in the root directory run:
 
-`
+```sh
 npm test
-`
+```
