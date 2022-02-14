@@ -113,7 +113,7 @@ const TradeLayout = ({ children, logout }) => {
           }}
         >
           <div
-            className="md:ml-64 md:mt-10px overscroll-none"
+            className=""
             style={{
               position: "absolute",
               top: 0,
@@ -125,6 +125,7 @@ const TradeLayout = ({ children, logout }) => {
               backgroundRepeat: "no-repeat",
               backgroundAttachement: "fixed",
               overscrollBehaviorX: "contain",
+              overscrollBehaviorY: "contain",
             }}
           >
             {children}
