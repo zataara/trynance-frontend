@@ -49,7 +49,6 @@ const TradeLayout = ({ children, logout }) => {
 
   const fetchAssets = async () => {
     let res = await backendApi.getAssets(currentUser);
-    console.log("fetched");
     let newAssets = JSON.parse(res);
     setAssets(newAssets);
   };
