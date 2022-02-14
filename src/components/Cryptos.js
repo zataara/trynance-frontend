@@ -17,10 +17,10 @@ const Cryptos = (props) => {
           <div className="overflow-auto shadow-md sm:rounded-lg ">
             <table className="relative">
               <thead className="sticky top-0 bg-darkmode-thead">
-                <tr className="">
+                <tr className="sticky top-0">
                   <th
                     scope="col"
-                    className="sticky lg:py-3 lg:px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky top-0 lg:py-3 lg:px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     <i></i>
                   </th>
@@ -62,13 +62,13 @@ const Cryptos = (props) => {
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     24h Volume
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
+                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Supply
                   </th>
