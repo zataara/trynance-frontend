@@ -33,60 +33,60 @@ const Watchlist = (props) => {
       <div className="overflow-x-auto sm:-mx-6 overscroll-none">
         <div className="inline-block pt-14 py-2 min-w-full sm:px-6">
           <div className="overflow-auto shadow-md sm:rounded-lg ">
-            <table className="">
-              <thead className="sticky top-0 bg-darkmode-thead">
+            <table className="relative">
+              <thead className="bg-darkmode-thead">
                 <tr>
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     <i></i>
                   </th>
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     #
                   </th>
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Name
                   </th>
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Last Price
                   </th>
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 "
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 "
                   >
                     24H
                   </th>
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Buy/Sell
                   </th>
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     Market Cap
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
+                    className=" py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
                   >
                     24h Volume
                   </th>
                   <th
                     scope="col"
-                    className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
+                    className=" py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 sticky top-0"
                   >
                     Supply
                   </th>

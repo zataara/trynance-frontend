@@ -132,12 +132,12 @@ const MakeTrade = (props) => {
   return (
     <>
       <div className="container mx-auto px-4 h-full overscroll-none ">
-        <div className="flex content-center items-center justify-center h-full overscroll-none md:w-8/12">
+        <div className="flex content-center items-center justify-center md:ml-64 h-full overscroll-none">
           <div className="w-full px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0 bg-gradient-to-r from-cyan-500 to-blue-500">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
-                  <h6 className="text-black text-3xl font-bold">Trade</h6>
+                  <h6 className="text-black text-xl lg:text-4xl font-bold">New Trade</h6>
                 </div>
 
                 <hr className="mt-2 border-b-1 border-blueGray-300" />
@@ -148,7 +148,7 @@ const MakeTrade = (props) => {
                   <div className="relative w-full mb-3"></div>
                   <div className="text-center mt-6">
                     <div className="wrapper relative w-full mb-3">
-                      <div className="display: inline-block w-6/12 mr-4">
+                      <div className="display: inline-block w-4/12 mr-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="currency_from"
@@ -156,7 +156,7 @@ const MakeTrade = (props) => {
                           From
                         </label>
                         <Select
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
                           id="currency_from"
                           type="text"
                           name="currency_from"
@@ -196,7 +196,7 @@ const MakeTrade = (props) => {
                       </div>
                     </div>
                     <div className="wrapper relative w-full mb-3">
-                      <div className="display: inline-block w-6/12 mr-4">
+                      <div className="display: inline-block w-4/12 mr-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="currency_from"

@@ -9,12 +9,13 @@ const Trades = (props) => {
 
   const orderedTrades = [].concat(trades).sort((a, b) => a.date - b.date);
 
+  
   return (
-    <div className="flex flex-col items-center lg:ml-64 my-10 h-screen">
-    <div className="overflow-x-auto sm:-mx-6 overscroll-none">
-      <div className="inline-block pt-14 py-2 min-w-full sm:px-6">
+    <div className="flex flex-col md:items-center lg:ml-64 my-10 h-screen">
+      <div className="overflow-x-auto sm:-mx-6 overscroll-none">
+        <div className="inline-block pt-14 py-2 min-w-full sm:px-6">
         <div className="overflow-auto shadow-md sm:rounded-lg ">
-            <table className=" overscroll-none">
+            <table className="overscroll-none">
               <thead className="sticky top-0 bg-darkmode-thead">
                 <tr>
                   <th

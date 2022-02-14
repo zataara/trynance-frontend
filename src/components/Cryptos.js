@@ -6,26 +6,21 @@ import CoinContext from "../context/CoinContext";
 import starIcon from "../images/star.svg";
 import starIcon_gray from "../images/star_gray.svg";
 
-
 const Cryptos = (props) => {
   const { coins } = useContext(CoinContext);
-  const {
-    faves,
-    toggleFave
-  } = useContext(UserContext);
-
+  const { faves, toggleFave } = useContext(UserContext);
 
   return (
-    <div className="flex flex-col items-center lg:ml-64 my-10 h-screen">
+    <div className="flex flex-col md:items-center md:ml-64 my-10 h-screen">
       <div className="overflow-x-auto sm:-mx-6 overscroll-none">
         <div className="inline-block pt-14 py-2 min-w-full sm:px-6">
           <div className="overflow-auto shadow-md sm:rounded-lg ">
-            <table className="">
+            <table className="relative">
               <thead className="sticky top-0 bg-darkmode-thead">
-                <tr>
+                <tr className="">
                   <th
                     scope="col"
-                    className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
+                    className="sticky lg:py-3 lg:px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
                     <i></i>
                   </th>
@@ -33,7 +28,6 @@ const Cryptos = (props) => {
                     scope="col"
                     className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
-                    
                     #
                   </th>
                   <th
@@ -88,7 +82,7 @@ const Cryptos = (props) => {
                         id={coin.symbol}
                         onClick={toggleFave}
                         src={
-                          faves.some(fave => fave === coin.symbol)
+                          faves.some((fave) => fave === coin.symbol)
                             ? starIcon
                             : starIcon_gray
                         }
@@ -139,15 +133,15 @@ const Cryptos = (props) => {
                       </button>
                     </td>
                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                      <Link to= {`/trade/${coin.name}`} >
-                      <button
-                        class="transition duration-300 ease-in-out 
+                      <Link to={`/trade/${coin.name}`}>
+                        <button
+                          class="transition duration-300 ease-in-out 
                         hover:bg-black hover:text-cyan-300 transform 
                         hover:-translate-xy-1  hover:scale-110 
-                        rounded-lg p-4 border hover:border-cyan-300 bg-cyan-300 text-darkmode-tbody font-bold py-2 px-4  rounded"
-                      >
-                        Trade
-                      </button>
+                        rounded-lg p-4 border hover:border-cyan-300 bg-cyan-300 text-darkmode-tbody font-bold py-2 px-4"
+                        >
+                          Trade
+                        </button>
                       </Link>
                     </td>
                     <td class="py-4 px-6 text-sm font-bold text-gray-500 whitespace-nowrap dark:text-gray-400 transition duration-1000">
