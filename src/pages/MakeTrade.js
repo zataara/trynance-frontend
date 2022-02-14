@@ -1,5 +1,5 @@
 import { React, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BackendApi from "../api/backend";
 import UserContext from "../context/UserContext";
 import CoinContext from "../context/CoinContext";
@@ -21,6 +21,7 @@ const MakeTrade = (props) => {
   const [currencyToAmount, setCurrencyToAmount] = useState(0);
   const [currencyFromRate, setCurrencyFromRate] = useState();
   const [currencyToRate, setCurrencyToRate] = useState();
+  const navigateTo = useNavigate();
 
   // const handleSubmit = (e) => {
   //   BackendApi.postTrade(currentUser, prepareDataForTrade());
@@ -31,6 +32,7 @@ const MakeTrade = (props) => {
     BackendApi.postTrade(currentUser, prepareDataForTrade());
     fetchAssets();
     fetchTrades();
+    navigateTo('/trades');
   };
 
   function findCoinImage(coin) {
@@ -75,7 +77,7 @@ const MakeTrade = (props) => {
   }
 
   /***** Handlers for changes to the form *****/
-  const handleFromChange = (e) => {
+  const handleFormChange = (e) => {
     const { value } = e.target;
     setCurrencyFromAmount(value);
     setCurrencyToAmount(
@@ -137,7 +139,9 @@ const MakeTrade = (props) => {
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg border-0 bg-gradient-to-r from-cyan-500 to-blue-500">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
-                  <h6 className="text-black text-xl lg:text-4xl font-bold">New Trade</h6>
+                  <h6 className="text-black text-xl lg:text-4xl font-bold">
+                    New Trade
+                  </h6>
                 </div>
 
                 <hr className="mt-2 border-b-1 border-blueGray-300" />
@@ -156,7 +160,7 @@ const MakeTrade = (props) => {
                           From
                         </label>
                         <Select
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
+                          className="border-0 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
                           id="currency_from"
                           type="text"
                           name="currency_from"
@@ -165,7 +169,7 @@ const MakeTrade = (props) => {
                           onChange={changeCurrencyFrom}
                         />
                       </div>
-                      <div className="display: inline-block">
+                      <div className="display: inline-block w-4/12 mr-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="username"
@@ -179,11 +183,11 @@ const MakeTrade = (props) => {
                             : "Amount"}
                         </label>
                         <input
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           {...register("currency_from_amount", {
                             max: findAssetAmount(currencyFrom),
                           })}
-                          onChange={handleFromChange}
+                          onChange={handleFormChange}
                           type="number"
                           name="currency_from_amount"
                           value={currencyFromAmount}
@@ -204,7 +208,7 @@ const MakeTrade = (props) => {
                           To
                         </label>
                         <Select
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          className="border-0 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           id="currency_to"
                           type="text"
                           name="currency_to"
@@ -213,7 +217,7 @@ const MakeTrade = (props) => {
                           onChange={changeCurrencyTo}
                         />
                       </div>
-                      <div className="display: inline-block">
+                      <div className="display: inline-block w-4/12 mr-4">
                         <label
                           className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                           htmlFor="username"
@@ -221,7 +225,7 @@ const MakeTrade = (props) => {
                           Amount
                         </label>
                         <input
-                          className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                          className="border-0 px-3 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           {...register("currency_to_amount", {
                             max: findAssetAmount(currencyFrom),
                           })}
