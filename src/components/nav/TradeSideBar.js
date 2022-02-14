@@ -47,7 +47,7 @@ const TradeSideBar = ({ logout }) => {
                     className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
                     onClick={() => setCollapseShow("hidden")}
                   >
-                    <i class="uil uil-multiply"></i>
+                    <i className="uil uil-multiply"></i>
                   </button>
                 </div>
               </div>
