@@ -1,36 +1,24 @@
-import { React, useState, useContext } from "react";
+import { React, useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import convertBigNums from "../helpers/convertBigNums";
 import CoinContext from "../context/CoinContext";
 import starIcon from "../images/star.svg";
 import starIcon_gray from "../images/star_gray.svg";
-import backendApi from "../api/backend";
+
 
 const Cryptos = (props) => {
-  const { coins, setCoins } = useContext(CoinContext);
+  const { coins } = useContext(CoinContext);
   const {
-    currentUser,
     faves,
-    setFaves,
-    fetchFaves,
-    trades,
-    setTrades,
-    fetchTrades,
-    assets,
-    setAssets,
-    fetchAssets,
     toggleFave
   } = useContext(UserContext);
 
-  
-
-
 
   return (
-    <div className="flex flex-col md:mx-20 my-10 md:my-10 h-screen overscroll-none w-12/12">
-      <div className="overflow-x-auto sm:-mx-6  md:-mx-24  overscroll-none ">
-        <div className="inline-block pt-14 py-2 min-w-full sm:px-6 lg:px-8 ">
+    <div className="flex flex-col items-center lg:ml-64 my-10 h-screen">
+      <div className="overflow-x-auto sm:-mx-6 overscroll-none">
+        <div className="inline-block pt-14 py-2 min-w-full sm:px-6">
           <div className="overflow-auto shadow-md sm:rounded-lg ">
             <table className="">
               <thead className="sticky top-0 bg-darkmode-thead">
@@ -45,6 +33,7 @@ const Cryptos = (props) => {
                     scope="col"
                     className="sticky top-0 py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400"
                   >
+                    
                     #
                   </th>
                   <th

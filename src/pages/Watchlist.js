@@ -29,9 +29,9 @@ const Watchlist = (props) => {
   const orderedFaves = allFaveCoins.sort((a, b) => b.id - a.id);
 
   return (
-    <div className="flex flex-col md:mx-20 my-10 md:my-10 h-screen overscroll-none w-12/12">
-      <div className="overflow-x-auto sm:-mx-6  md:-mx-24  overscroll-none ">
-        <div className="inline-block pt-14 py-2 max-w-full sm:px-6 lg:px-8 ">
+    <div className="flex flex-col items-center lg:ml-64 my-10 h-screen">
+      <div className="overflow-x-auto sm:-mx-6 overscroll-none">
+        <div className="inline-block pt-14 py-2 min-w-full sm:px-6">
           <div className="overflow-auto shadow-md sm:rounded-lg ">
             <table className="">
               <thead className="sticky top-0 bg-darkmode-thead">
@@ -92,7 +92,7 @@ const Watchlist = (props) => {
                   </th>
                 </tr>
               </thead>
-              <tbody className="flex-1 overflow-y-auto ">
+              <tbody className="flex-1 overflow-y-auto overscroll-x-none">
                 {orderedFaves.map((coin) => (
                   <tr className="bg-darkmode-tbody border-b  dark:border-gray-600 transition duration-1000">
                     <td className="sticky top-0 py-3 px-2 text-center text-gray-700 uppercase dark:text-gray-400">
