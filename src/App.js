@@ -30,9 +30,7 @@ function App() {
       async function getCurrentUser() {
         if (token) {
           try {
-            console.log(token);
             let { username } = jwt_decode(token);
-
             backendApi.token = token;
             // let currentUser = await backendApi.getCurrentUser(username);
 
@@ -55,7 +53,6 @@ function App() {
   );
 
   async function register(data) {
-    console.log(data);
     try {
       let token = await backendApi.register(data);
       setToken(token);
