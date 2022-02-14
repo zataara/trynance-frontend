@@ -1,24 +1,26 @@
 /*eslint-disable*/
-import React from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { FaChartLine } from "react-icons/fa";
 
-const TradeSideBar = ({logout}) => {
-  const [collapseShow, setCollapseShow] = React.useState("hidden");
+const TradeSideBar = ({ logout }) => {
+  const [collapseShow, setCollapseShow] = useState("hidden");
   return (
     <>
       <nav className="bg-gradient-to-r rounded-md from-cyan-500 to-blue-500 md:bg-white md:from-white md:to-white md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6 ">
-        <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+        <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto ">
           {/* Toggler */}
           <button
             className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-3xl leading-none bg-transparent rounded border border-solid border-transparent"
             type="button"
             onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
-          ><i className="uil uil-bars"></i></button>
+          >
+            <i className="uil uil-bars"></i>
+          </button>
           {/* Brand */}
           <Link
-            className="md:block mr-16 text-left text-black md:pb-2 md:ml-8 ml-50 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
+            className="md:block mr-16 text-left text-black md:pb-2 md:ml-8 ml-50 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
             to="/app"
           >
             Trynance
@@ -38,11 +40,7 @@ const TradeSideBar = ({logout}) => {
             {/* Collapse header */}
             <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
               <div className="flex flex-wrap">
-              
-                <div className="w-6/12">
-                  
-                
-                </div>
+                <div className="w-6/12"></div>
                 <div className="w-6/12 flex justify-end">
                   <button
                     type="button"
@@ -50,7 +48,6 @@ const TradeSideBar = ({logout}) => {
                     onClick={() => setCollapseShow("hidden")}
                   >
                     <i class="uil uil-multiply"></i>
-                    
                   </button>
                 </div>
               </div>
@@ -179,7 +176,6 @@ const TradeSideBar = ({logout}) => {
                         (window.location.href.indexOf("/coins") !== -1
                           ? "opacity-75 ml-7"
                           : "text-blueGray-300")
-                         
                       }
                     ></i>{" "}
                     Coins
@@ -217,7 +213,7 @@ const TradeSideBar = ({logout}) => {
                   </Link>
                 </div>
               </li>
-              
+
               {/***** Gainers *****/}
               <li className="items-center">
                 <div
@@ -278,7 +274,6 @@ const TradeSideBar = ({logout}) => {
                   </Link>
                 </div>
               </li>
-              
 
               {/*** Link ***/}
               <li className="items-center">
