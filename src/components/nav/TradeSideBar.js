@@ -18,7 +18,7 @@ const TradeSideBar = ({logout}) => {
           ><i className="uil uil-bars"></i></button>
           {/* Brand */}
           <Link
-            className="md:block mr-16 text-left text-black md:pb-2 ml-8 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
+            className="md:block mr-16 text-left text-black md:pb-2 md:ml-8 ml-50 mr-0 inline-block whitespace-nowrap text-2xl uppercase font-bold p-4 px-0"
             to="/app"
           >
             Trynance
