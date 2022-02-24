@@ -1,6 +1,7 @@
 import {React, useContext} from "react";
 import UserContext from "../context/UserContext";
-import ComingSoon from "../components/ComingSoon";
+import NewsContext from "../context/NewsContext";
+import NewsCard from "../components/NewsCard";
 
 const News = () => {
   const {
@@ -8,11 +9,21 @@ const News = () => {
     faves,
     trades,
     assets,
-    news,
   } = useContext(UserContext);
+
+  const {
+    news
+  } = useContext(NewsContext);
+
+  
+// console.log(news)
+  
   return (
     <>
-      <ComingSoon />
+      {news.map((story) => (
+      <NewsCard title={story.title} content={story.content} />
+      ))}
+      
     </>
   );
 };

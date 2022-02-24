@@ -1,6 +1,7 @@
 import { React, useEffect, useState, useContext } from "react";
 import CoinContext from "../context/CoinContext";
 import UserContext from "../context/UserContext";
+import NewsContext from "../context/NewsContext";
 import backGround from "../images/cyan-background.png";
 
 import TradeNavBar from "../components/nav/TradeNavBar";
@@ -14,7 +15,7 @@ const TradeLayout = ({ children, logout }) => {
   const [faves, setFaves] = useState([]);
   const [trades, setTrades] = useState([]);
   const [assets, setAssets] = useState([]);
-  // const [news, setNews] = useState([]);
+  const [news, setNews] = useState([]);
 
   // fetch new data from CoinGecko every 2 seconds and set state
   useEffect(() => {
@@ -59,18 +60,19 @@ const TradeLayout = ({ children, logout }) => {
     fetchAssets().catch(console.error);
   }, [currentUser]);
 
-  // fetch new data from CryptoPanic API every 30 seconds and set state
-  // useEffect(() => {
-  //   let intervalId = setInterval(() => {
-  //     fetch("https://messari.io/api/vi/news")
-  //       .then((data) => data.json())
-  //       .then((data) => setNews(data))
-  //       .catch(function (error) {
-  //         console.log(error);
-  //       });
-  //   }, 60000);
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  // fetch new data from Messari API every 60 seconds and set news state.
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      fetch("https://data.messari.io/api/v1/news")
+        .then((data) => data.json())
+        .then((data) => setNews(data.data))
+        .catch(function (error) {
+          console.log(error);
+        });
+    }, 10000);
+    return () => clearInterval(intervalId);
+  }, []);
+  // console.log("🚀 ~ file: TradeLayout.js ~ line 139 ~ TradeLayout ~  news",  news)
 
   //handles clicking the favorite icon and posts fave to db
   async function toggleFave(event) {
@@ -111,6 +113,11 @@ const TradeLayout = ({ children, logout }) => {
             setCoins,
           }}
         >
+        <NewsContext.Provider
+          value={{
+            news,
+          }}
+        >
           <div
             className=""
             style={{
@@ -129,6 +136,7 @@ const TradeLayout = ({ children, logout }) => {
           >
             {children}
           </div>
+        </NewsContext.Provider>
         </CoinContext.Provider>
       </UserContext.Provider>
     </>
